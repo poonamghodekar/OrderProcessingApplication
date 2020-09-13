@@ -18,15 +18,23 @@ namespace OrderProcessing.Domain.BusinessRules
         public void ProcessOrder(IOrder order)
         {
             Product product = (Product)order;
+            Console.WriteLine("\n\t\t** PROCESSING ORDER ID : {0}\n", product.OrderId);
+            Console.WriteLine("\n\t\t** PROCESSING order placed for {0} product type : ", product.ProductType);
             if (product.ProductType.Equals(ProductType.PHYSICAL))
                 _orderExecutionService.CreatePackingSlip();
             else
                 _orderExecutionService.CreateDuplicateSlip();
 
-            PrintProductDetails();
+            PrintProductDetails(product.ProductDetails);
             _orderExecutionService.GenerateAgentCommission();
         }
 
-        private void PrintProductDetails() { }
+        private void PrintProductDetails(ProductDetails productDetails)
+        {
+            Console.WriteLine("\t\t*Below are the details : \n");
+            Console.WriteLine("\t\t\t\t**Name : {0} \n", productDetails.Name);
+            Console.WriteLine("\t\t\t\t**Price per unit : {0} \n", productDetails.Price);
+            Console.WriteLine("\t\t\t\t**Quantity ordered : {0} \n", productDetails.Quantity);
+        }
     }
 }
