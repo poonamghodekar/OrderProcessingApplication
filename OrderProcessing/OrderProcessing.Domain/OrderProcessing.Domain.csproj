@@ -41,7 +41,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessRules\MembershipProcessingStrategy.cs" />
+    <Compile Include="BusinessRules\OrderProcessingBaseStrategy.cs" />
+    <Compile Include="BusinessRules\ProductOrderProcessingStrategy.cs" />
+    <Compile Include="BusinessRules\VideoRquestProcessingStrategy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OrderProcessing.Models\OrderProcessing.Models.csproj">
+      <Project>{8CA023DE-FAAC-44E0-A3FC-02E7E73ACBF4}</Project>
+      <Name>OrderProcessing.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
