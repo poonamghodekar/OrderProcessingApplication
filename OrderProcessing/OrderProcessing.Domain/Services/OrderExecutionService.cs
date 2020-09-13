@@ -20,37 +20,38 @@ namespace OrderProcessing.Domain.Services
     {
         public void ActivateMemberShip()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("\n\t\t--> Membership has been activated. Thank you.\n");
         }
 
         public void CreateDuplicateSlip()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("\n\t\t--> Duplicate slip is generated for Royalty department.\n");
         }
 
         public void CreatePackingSlip()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("\n\t\t--> Packing slip has been generated for Shipping.\n");
         }
 
         public void GenerateAgentCommission()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("\n\t\t--> Agent commission has been generated.\n");
         }
 
         public void SendEmail(string message)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("\n\t\t--> **Email sent. Below are the email contents.**\n");
+            Console.WriteLine("\t\t\t\t" + message);
         }
 
         public void SendFreeVideo()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("\n\t\t--> Free 'First Aid' video has been added.\n");
         }
 
         public void UpgradeMemberShip()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("\n\t\t-->Membership has been upgraded. Thank you.\n");
         }
     }
 }
