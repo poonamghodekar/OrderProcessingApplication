@@ -3,6 +3,7 @@ using OrderProcessing.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,6 +32,8 @@ namespace OrderProcessing.Domain.BusinessRules
         {
             try
             {
+                if (order == null)
+                    throw new Exception("Order is null");
                 Product product = (Product)order;
                 Console.WriteLine("\n\t\t** PROCESSING ORDER ID : {0}\n", product.OrderId);
                 Console.WriteLine("\n\t\t** PROCESSING order placed for {0} product type : ", product.ProductType);

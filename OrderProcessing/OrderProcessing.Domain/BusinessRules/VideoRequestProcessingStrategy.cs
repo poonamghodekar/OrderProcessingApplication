@@ -27,6 +27,9 @@ namespace OrderProcessing.Domain.BusinessRules
         {
             try
             {
+                if (order == null)
+                    throw new Exception("Order is null");
+
                 Video video = (Video)order;
 
                 Console.WriteLine("\n\t\t** PROCESSING ORDER ID : {0}\n", video.OrderId);

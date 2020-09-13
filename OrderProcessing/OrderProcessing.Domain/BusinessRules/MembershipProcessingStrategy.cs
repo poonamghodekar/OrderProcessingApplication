@@ -27,6 +27,9 @@ namespace OrderProcessing.Domain.BusinessRules
         {
             try
             {
+                if (order == null)
+                    throw new Exception("Order is null");
+
                 Membership membership = (Membership)order;
                 Console.WriteLine("\n\t\t** PROCESSING ORDER ID : {0}\n", membership.OrderId);
                 Console.WriteLine("\n\t\t** PROCESSING order placed for {0} membership : ", membership.MembershipType);
