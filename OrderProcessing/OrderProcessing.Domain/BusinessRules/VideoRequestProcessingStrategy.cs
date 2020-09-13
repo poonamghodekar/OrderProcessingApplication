@@ -4,13 +4,25 @@ using System;
 
 namespace OrderProcessing.Domain.BusinessRules
 {
-    public class VideoRquestProcessingStrategy : IOrderProcessingBaseStrategy
+    /// <summary>
+    /// VideoRequestProcessingStrategy - for Video requests
+    /// </summary>
+    public class VideoRequestProcessingStrategy : IOrderProcessingBaseStrategy
     {
         private readonly IOrderExecutionService _orderExecutionService;
-        public VideoRquestProcessingStrategy(IOrderExecutionService orderExecutionService)
+        /// <summary>
+        /// Injecting dependency through constructor
+        /// </summary>
+        /// <param name="orderExecutionService"></param>
+        public VideoRequestProcessingStrategy(IOrderExecutionService orderExecutionService)
         {
             _orderExecutionService = orderExecutionService;
         }
+
+        /// <summary>
+        /// Process video request order
+        /// </summary>
+        /// <param name="order"></param>
         public void ProcessOrder(IOrder order)
         {
             Video video = (Video)order;
@@ -22,8 +34,13 @@ namespace OrderProcessing.Domain.BusinessRules
 
             PrintVideoDetails(video.VideoDetails);
             _orderExecutionService.CreatePackingSlip();
+            Console.WriteLine("\n\t\t*********************************************\n");
         }
 
+        /// <summary>
+        /// Prints video details
+        /// </summary>
+        /// <param name="videoDetails"></param>
         private void PrintVideoDetails(VideoDetails videoDetails)
         {
             Console.WriteLine("\t\t*Below are the Video details : \n");

@@ -4,13 +4,25 @@ using System;
 
 namespace OrderProcessing.Domain.BusinessRules
 {
+    /// <summary>
+    /// MembershipProcessingStrategy - for membership orders
+    /// </summary>
     public class MembershipProcessingStrategy : IOrderProcessingBaseStrategy
     {
         private readonly IOrderExecutionService _orderExecutionService;
+        /// <summary>
+        /// Injecting dependency through constructor
+        /// </summary>
+        /// <param name="orderExecutionService"></param>
         public MembershipProcessingStrategy(IOrderExecutionService orderExecutionService)
         {
             _orderExecutionService = orderExecutionService;
         }
+
+        /// <summary>
+        /// Process membership request
+        /// </summary>
+        /// <param name="order"></param>
         public void ProcessOrder(IOrder order)
         {
             Membership membership = (Membership)order;
@@ -28,8 +40,13 @@ namespace OrderProcessing.Domain.BusinessRules
                 PrintMemberShipDetails(membership.MembershipDetails);
                 _orderExecutionService.SendEmail("Your membership has been upgraded.Please find attached details.Thank you.\n");
             }
+            Console.WriteLine("\n\t\t*********************************************\n");
         }
 
+        /// <summary>
+        /// Print membership details
+        /// </summary>
+        /// <param name="membershipDetails"></param>
         private void PrintMemberShipDetails(MembershipDetails membershipDetails)
         {
             Console.WriteLine("\t\t*Below are the Membership details : \n");

@@ -8,13 +8,25 @@ using System.Threading.Tasks;
 
 namespace OrderProcessing.Domain.BusinessRules
 {
+    /// <summary>
+    /// ProductOrderProcessingStrategy - for Physical Product/Book type
+    /// </summary>
     public class ProductOrderProcessingStrategy : IOrderProcessingBaseStrategy
     {
         private readonly IOrderExecutionService _orderExecutionService;
+        /// <summary>
+        /// Injecting dependency through constructor
+        /// </summary>
+        /// <param name="orderExecutionService"></param>
         public ProductOrderProcessingStrategy(IOrderExecutionService orderExecutionService)
         {
             _orderExecutionService = orderExecutionService;
         }
+
+        /// <summary>
+        /// Process product request
+        /// </summary>
+        /// <param name="order"></param>
         public void ProcessOrder(IOrder order)
         {
             Product product = (Product)order;
@@ -27,8 +39,13 @@ namespace OrderProcessing.Domain.BusinessRules
 
             PrintProductDetails(product.ProductDetails);
             _orderExecutionService.GenerateAgentCommission();
+            Console.WriteLine("\n\t\t*********************************************\n");
         }
 
+        /// <summary>
+        /// Print product details
+        /// </summary>
+        /// <param name="productDetails"></param>
         private void PrintProductDetails(ProductDetails productDetails)
         {
             Console.WriteLine("\t\t*Below are the details : \n");

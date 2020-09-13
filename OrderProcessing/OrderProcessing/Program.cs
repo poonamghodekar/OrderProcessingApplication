@@ -113,9 +113,11 @@ namespace OrderProcessing
             IOrderExecutionService orderExecutionService = new OrderExecutionService();
             MembershipProcessingStrategy membershipProcessingStrategy = new MembershipProcessingStrategy(orderExecutionService);
             ProductOrderProcessingStrategy productOrderProcessingStrategy = new ProductOrderProcessingStrategy(orderExecutionService);
-            VideoRquestProcessingStrategy videoRquestProcessingStrategy = new VideoRquestProcessingStrategy(orderExecutionService);
+            VideoRequestProcessingStrategy videoRquestProcessingStrategy = new VideoRequestProcessingStrategy(orderExecutionService);
 
-            Console.WriteLine("Process all orders");
+            Console.WriteLine("\n\t\t---------------------------------------------\n");
+            Console.WriteLine("\n\t\t*********************************************\n");
+            Console.WriteLine("\n\t\t* PROCESSING ALL THE PLACED ORDERS *\n");
 
             foreach (KeyValuePair<Guid, IOrder> kvp in orders)
             {
@@ -138,6 +140,10 @@ namespace OrderProcessing
                         break;
                 }
             }
+
+            Console.WriteLine("\n\t\t*********************************************\n");
+            Console.WriteLine("\n\t\t---------------------------------------------\n");
+            Console.WriteLine("\n\t\t* ALL ORDERS HAS BEEN PROCESSED *\n");
         }
     }
 }
