@@ -25,20 +25,28 @@ namespace OrderProcessing.Domain.BusinessRules
         /// <param name="order"></param>
         public void ProcessOrder(IOrder order)
         {
-            Membership membership = (Membership)order;
-            Console.WriteLine("\n\t\t** PROCESSING ORDER ID : {0}\n", membership.OrderId);
-            Console.WriteLine("\n\t\t** PROCESSING order placed for {0} membership : ", membership.MembershipType);
-            if (membership.MembershipType.Equals(MembershipType.ACTIVATE))
+            try
             {
-                _orderExecutionService.ActivateMemberShip();
-                PrintMemberShipDetails(membership.MembershipDetails);
-                _orderExecutionService.SendEmail("Hi, your membership has been activated. Please find attached details. Thank you.\n");
+                Membership membership = (Membership)order;
+                Console.WriteLine("\n\t\t** PROCESSING ORDER ID : {0}\n", membership.OrderId);
+                Console.WriteLine("\n\t\t** PROCESSING order placed for {0} membership : ", membership.MembershipType);
+                if (membership.MembershipType.Equals(MembershipType.ACTIVATE))
+                {
+                    _orderExecutionService.ActivateMemberShip();
+                    PrintMemberShipDetails(membership.MembershipDetails);
+                    _orderExecutionService.SendEmail("Hi, your membership has been activated. Please find attached details. Thank you.\n");
+                }
+                else
+                {
+                    _orderExecutionService.UpgradeMemberShip();
+                    PrintMemberShipDetails(membership.MembershipDetails);
+                    _orderExecutionService.SendEmail("Your membership has been upgraded.Please find attached details.Thank you.\n");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                _orderExecutionService.UpgradeMemberShip();
-                PrintMemberShipDetails(membership.MembershipDetails);
-                _orderExecutionService.SendEmail("Your membership has been upgraded.Please find attached details.Thank you.\n");
+                Console.WriteLine(ex.Message);
+                throw;
             }
             Console.WriteLine("\n\t\t*********************************************\n");
         }

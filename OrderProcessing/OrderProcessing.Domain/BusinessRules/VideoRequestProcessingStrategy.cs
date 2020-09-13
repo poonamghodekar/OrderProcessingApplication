@@ -25,15 +25,23 @@ namespace OrderProcessing.Domain.BusinessRules
         /// <param name="order"></param>
         public void ProcessOrder(IOrder order)
         {
-            Video video = (Video)order;
+            try
+            {
+                Video video = (Video)order;
 
-            Console.WriteLine("\n\t\t** PROCESSING ORDER ID : {0}\n", video.OrderId);
-            Console.WriteLine("\n\t\t** PROCESSING order placed for {0} video : ", video.VideoType);
-            if (video.VideoType.Equals(VideoType.LEARNING))
-                _orderExecutionService.SendFreeVideo();
+                Console.WriteLine("\n\t\t** PROCESSING ORDER ID : {0}\n", video.OrderId);
+                Console.WriteLine("\n\t\t** PROCESSING order placed for {0} video : ", video.VideoType);
+                if (video.VideoType.Equals(VideoType.LEARNING))
+                    _orderExecutionService.SendFreeVideo();
 
-            PrintVideoDetails(video.VideoDetails);
-            _orderExecutionService.CreatePackingSlip();
+                PrintVideoDetails(video.VideoDetails);
+                _orderExecutionService.CreatePackingSlip();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
             Console.WriteLine("\n\t\t*********************************************\n");
         }
 

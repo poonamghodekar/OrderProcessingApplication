@@ -104,7 +104,7 @@ namespace OrderProcessing
                     default:
                         break;
                 }
-            } while ((option > 0 && option <= 4) || option != 5);
+            } while (option != 5);
         }
 
         private static void ProcessAllOrders(IDictionary<Guid, IOrder> orders)
@@ -118,27 +118,33 @@ namespace OrderProcessing
             Console.WriteLine("\n\t\t---------------------------------------------\n");
             Console.WriteLine("\n\t\t*********************************************\n");
             Console.WriteLine("\n\t\t* PROCESSING ALL THE PLACED ORDERS *\n");
-
-            foreach (KeyValuePair<Guid, IOrder> kvp in orders)
+            try
             {
-                string name = kvp.Value.GetType().Name.ToUpper();
-                switch ((OrderType)Enum.Parse(typeof(OrderType), name))
+                foreach (KeyValuePair<Guid, IOrder> kvp in orders)
                 {
-                    case OrderType.MEMBERSHIP:
-                        orderProcessingService.SetOrderProcessingStrategy(membershipProcessingStrategy);
-                        orderProcessingService.ProcessOrder(kvp.Value);
-                        break;
-                    case OrderType.PRODUCT:
-                        orderProcessingService.SetOrderProcessingStrategy(productOrderProcessingStrategy);
-                        orderProcessingService.ProcessOrder(kvp.Value);
-                        break;
-                    case OrderType.VIDEO:
-                        orderProcessingService.SetOrderProcessingStrategy(videoRquestProcessingStrategy);
-                        orderProcessingService.ProcessOrder(kvp.Value);
-                        break;
-                    default:
-                        break;
+                    string name = kvp.Value.GetType().Name.ToUpper();
+                    switch ((OrderType)Enum.Parse(typeof(OrderType), name))
+                    {
+                        case OrderType.MEMBERSHIP:
+                            orderProcessingService.SetOrderProcessingStrategy(membershipProcessingStrategy);
+                            orderProcessingService.ProcessOrder(kvp.Value);
+                            break;
+                        case OrderType.PRODUCT:
+                            orderProcessingService.SetOrderProcessingStrategy(productOrderProcessingStrategy);
+                            orderProcessingService.ProcessOrder(kvp.Value);
+                            break;
+                        case OrderType.VIDEO:
+                            orderProcessingService.SetOrderProcessingStrategy(videoRquestProcessingStrategy);
+                            orderProcessingService.ProcessOrder(kvp.Value);
+                            break;
+                        default:
+                            break;
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
 
             Console.WriteLine("\n\t\t*********************************************\n");

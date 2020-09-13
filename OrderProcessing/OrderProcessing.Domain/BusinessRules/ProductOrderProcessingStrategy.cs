@@ -29,16 +29,24 @@ namespace OrderProcessing.Domain.BusinessRules
         /// <param name="order"></param>
         public void ProcessOrder(IOrder order)
         {
-            Product product = (Product)order;
-            Console.WriteLine("\n\t\t** PROCESSING ORDER ID : {0}\n", product.OrderId);
-            Console.WriteLine("\n\t\t** PROCESSING order placed for {0} product type : ", product.ProductType);
-            if (product.ProductType.Equals(ProductType.PHYSICAL))
-                _orderExecutionService.CreatePackingSlip();
-            else
-                _orderExecutionService.CreateDuplicateSlip();
+            try
+            {
+                Product product = (Product)order;
+                Console.WriteLine("\n\t\t** PROCESSING ORDER ID : {0}\n", product.OrderId);
+                Console.WriteLine("\n\t\t** PROCESSING order placed for {0} product type : ", product.ProductType);
+                if (product.ProductType.Equals(ProductType.PHYSICAL))
+                    _orderExecutionService.CreatePackingSlip();
+                else
+                    _orderExecutionService.CreateDuplicateSlip();
 
-            PrintProductDetails(product.ProductDetails);
-            _orderExecutionService.GenerateAgentCommission();
+                PrintProductDetails(product.ProductDetails);
+                _orderExecutionService.GenerateAgentCommission();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
             Console.WriteLine("\n\t\t*********************************************\n");
         }
 
