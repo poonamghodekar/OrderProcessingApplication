@@ -1,10 +1,5 @@
 ﻿using OrderProcessing.Domain.Services;
 using OrderProcessing.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OrderProcessing.Domain.BusinessRules
 {
@@ -17,7 +12,14 @@ namespace OrderProcessing.Domain.BusinessRules
         }
         public void ProcessOrder(IOrder order)
         {
-            throw new NotImplementedException();
+            Video video = (Video)order;
+
+            if (video.VideoType.Equals(VideoType.LEARNING))
+                _orderExecutionService.SendFreeVideo();
+            PrintVideoDetails();
+            _orderExecutionService.CreatePackingSlip();
         }
+
+        private void PrintVideoDetails() { }
     }
 }

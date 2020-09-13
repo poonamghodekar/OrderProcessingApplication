@@ -1,10 +1,5 @@
 ﻿using OrderProcessing.Domain.Services;
 using OrderProcessing.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OrderProcessing.Domain.BusinessRules
 {
@@ -17,7 +12,19 @@ namespace OrderProcessing.Domain.BusinessRules
         }
         public void ProcessOrder(IOrder order)
         {
-            throw new NotImplementedException();
+            Membership membership = (Membership)order;
+            if (membership.MembershipType.Equals(MembershipType.ACTIVATE))
+            {
+                _orderExecutionService.ActivateMemberShip();
+                _orderExecutionService.SendEmail("Hi, your membership has been activated. Please find attached details. Thank you.\n");
+            }
+            else
+            {
+                _orderExecutionService.UpgradeMemberShip();
+                _orderExecutionService.SendEmail("Your membership has been upgraded.Please find attached details.Thank you.\n");
+            }
         }
+
+        private void PrintMembershipDetails() { }
     }
 }

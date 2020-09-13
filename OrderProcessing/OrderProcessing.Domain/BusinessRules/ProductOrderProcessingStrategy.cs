@@ -17,7 +17,16 @@ namespace OrderProcessing.Domain.BusinessRules
         }
         public void ProcessOrder(IOrder order)
         {
-            throw new NotImplementedException();
+            Product product = (Product)order;
+            if (product.ProductType.Equals(ProductType.PHYSICAL))
+                _orderExecutionService.CreatePackingSlip();
+            else
+                _orderExecutionService.CreateDuplicateSlip();
+
+            PrintProductDetails();
+            _orderExecutionService.GenerateAgentCommission();
         }
+
+        private void PrintProductDetails() { }
     }
 }
