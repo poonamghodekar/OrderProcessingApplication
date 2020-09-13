@@ -1,0 +1,6 @@
+C:\Github Code\OrderProcessingApplication\OrderProcessing\OrderProcessing.UnitTests\bin\Debug\OrderProcessing.UnitTests.dll
+C:\Github Code\OrderProcessingApplication\OrderProcessing\OrderProcessing.UnitTests\bin\Debug\OrderProcessing.UnitTests.pdb
+C:\Github Code\OrderProcessingApplication\OrderProcessing\OrderProcessing.UnitTests\obj\Debug\OrderProcessing.UnitTests.csprojAssemblyReference.cache
+C:\Github Code\OrderProcessingApplication\OrderProcessing\OrderProcessing.UnitTests\obj\Debug\OrderProcessing.UnitTests.csproj.CoreCompileInputs.cache
+C:\Github Code\OrderProcessingApplication\OrderProcessing\OrderProcessing.UnitTests\obj\Debug\OrderProcessing.UnitTests.dll
+C:\Github Code\OrderProcessingApplication\OrderProcessing\OrderProcessing.UnitTests\obj\Debug\OrderProcessing.UnitTests.pdb

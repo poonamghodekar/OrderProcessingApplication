@@ -1,0 +1,7 @@
+C:\Github Code\OrderProcessingApplication\OrderProcessing\OrderProcessing\bin\Debug\OrderProcessing.exe.config
+C:\Github Code\OrderProcessingApplication\OrderProcessing\OrderProcessing\bin\Debug\OrderProcessing.exe
+C:\Github Code\OrderProcessingApplication\OrderProcessing\OrderProcessing\bin\Debug\OrderProcessing.pdb
+C:\Github Code\OrderProcessingApplication\OrderProcessing\OrderProcessing\obj\Debug\OrderProcessing.csprojAssemblyReference.cache
+C:\Github Code\OrderProcessingApplication\OrderProcessing\OrderProcessing\obj\Debug\OrderProcessing.csproj.CoreCompileInputs.cache
+C:\Github Code\OrderProcessingApplication\OrderProcessing\OrderProcessing\obj\Debug\OrderProcessing.exe
+C:\Github Code\OrderProcessingApplication\OrderProcessing\OrderProcessing\obj\Debug\OrderProcessing.pdb
