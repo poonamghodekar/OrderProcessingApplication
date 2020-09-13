@@ -46,6 +46,7 @@
     <Compile Include="BusinessRules\ProductOrderProcessingStrategy.cs" />
     <Compile Include="BusinessRules\VideoRquestProcessingStrategy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\OrderExecutionService.cs" />
     <Compile Include="Services\OrderProcessingService.cs" />
   </ItemGroup>
   <ItemGroup>
