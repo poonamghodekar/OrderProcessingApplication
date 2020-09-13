@@ -1,4 +1,6 @@
-﻿using OrderProcessing.Models;
+﻿using OrderProcessing.Domain.BusinessRules;
+using OrderProcessing.Domain.Services;
+using OrderProcessing.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -94,7 +96,7 @@ namespace OrderProcessing
                         }
                         break;
                     case 4:
-                        ProcessAllOrders();
+                        ProcessAllOrders(orders);
                         break;
                     case 5:
                         Console.WriteLine("You have pressed Exit");
@@ -105,9 +107,37 @@ namespace OrderProcessing
             } while ((option > 0 && option <= 4) || option != 5);
         }
 
-        private static void ProcessAllOrders()
-        { 
-            
+        private static void ProcessAllOrders(IDictionary<Guid, IOrder> orders)
+        {
+            OrderProcessingService orderProcessingService = new OrderProcessingService();
+            IOrderExecutionService orderExecutionService = new OrderExecutionService();
+            MembershipProcessingStrategy membershipProcessingStrategy = new MembershipProcessingStrategy(orderExecutionService);
+            ProductOrderProcessingStrategy productOrderProcessingStrategy = new ProductOrderProcessingStrategy(orderExecutionService);
+            VideoRquestProcessingStrategy videoRquestProcessingStrategy = new VideoRquestProcessingStrategy(orderExecutionService);
+
+            Console.WriteLine("Process all orders");
+
+            foreach (KeyValuePair<Guid, IOrder> kvp in orders)
+            {
+                string name = kvp.Value.GetType().Name.ToUpper();
+                switch ((OrderType)Enum.Parse(typeof(OrderType), name))
+                {
+                    case OrderType.MEMBERSHIP:
+                        orderProcessingService.SetOrderProcessingStrategy(membershipProcessingStrategy);
+                        orderProcessingService.ProcessOrder(kvp.Value);
+                        break;
+                    case OrderType.PRODUCT:
+                        orderProcessingService.SetOrderProcessingStrategy(productOrderProcessingStrategy);
+                        orderProcessingService.ProcessOrder(kvp.Value);
+                        break;
+                    case OrderType.VIDEO:
+                        orderProcessingService.SetOrderProcessingStrategy(videoRquestProcessingStrategy);
+                        orderProcessingService.ProcessOrder(kvp.Value);
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
     }
 }

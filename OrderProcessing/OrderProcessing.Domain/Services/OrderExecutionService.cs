@@ -16,7 +16,7 @@ namespace OrderProcessing.Domain.Services
         void SendFreeVideo();
         void GenerateAgentCommission();
     }
-    class OrderExecutionService : IOrderExecutionService
+    public class OrderExecutionService : IOrderExecutionService
     {
         public void ActivateMemberShip()
         {

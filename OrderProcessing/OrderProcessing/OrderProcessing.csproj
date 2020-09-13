@@ -55,6 +55,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OrderProcessing.Domain\OrderProcessing.Domain.csproj">
+      <Project>{3366A994-397B-4E7F-A4C3-6F93840DCD7A}</Project>
+      <Name>OrderProcessing.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OrderProcessing.Models\OrderProcessing.Models.csproj">
       <Project>{8CA023DE-FAAC-44E0-A3FC-02E7E73ACBF4}</Project>
       <Name>OrderProcessing.Models</Name>
